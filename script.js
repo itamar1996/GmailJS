@@ -60,4 +60,58 @@ const emails = [
       isDraft: false
     }
   ];
-  
+
+let displaymail = (mail)=>{
+    let maildiv = document.createElement("div");
+    let mailp = document.createElement("p");
+    maildiv.className = "mail"; 
+    mailp.textContent ="sender:"+ mail.sender +
+    "recipient:" + mail.recipient+
+    mail.text;
+    maildiv.appendChild(mailp);
+    return maildiv;
+} 
+
+
+let rendermails = (mailarr)=>{
+    let emailsdiv = document.querySelector("#emails-area");
+    emailsdiv.innerHTML = "";
+    mailarr.forEach(element => {
+        emailsdiv.appendChild(displaymail(element))
+    });
+}
+let homepagerender = (mailarr)=>{
+    rendermails(mailarr.filter((element)=>element.sender != "john.doe@example.com" && !element.isDraft))
+}
+homepagerender(emails)
+
+
+document.querySelector("#inbox").addEventListener("click",()=>{
+    homepagerender(emails)
+})
+document.querySelector("#sent").addEventListener("click",()=>{
+    rendermails(emails.filter((element)=>element.sender == "john.doe@example.com" && !element.isDraft ))
+})
+
+document.querySelector("#drafts").addEventListener("click",()=>{
+    rendermails(emails.filter((element)=> element.isDraft ))
+})
+document.querySelector("#add-email").addEventListener("click",()=>{    
+    const formemail = document.querySelector("#new-email-form");
+    formemail.style.display = "flex";
+})
+
+document.querySelector("#send").addEventListener("click",()=>{
+    let nptrec = document.querySelector("#email-recipient");
+    const formemail = document.querySelector("#new-email-form");
+    let txtmail = document.querySelector("#email-body");
+    let newemail = {
+        sender :"john.doe@example.com",
+        recipient : nptrec.value,
+        text : txtmail.value,
+        isDraft : false
+    }
+    emails.push(newemail);
+    formemail.style.display = "none";
+    rendermails(emails.filter((element)=>element.sender == "john.doe@example.com" && !element.isDraft ))  
+})

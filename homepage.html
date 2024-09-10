@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-</head>
-<body>
-    
+  </head>
+  <body dir="rtl">
+    <div id="content">
+      <div id="navbar">
+        <div id="navbar-btn">
+            <button id="inbox" class="nav-btn">דואר נכנס</button>
+            <button id="sent" class="nav-btn">דואר יוצא</button>
+            <button id="settings" class="nav-btn">הגדרות</button>
+            <button id="drafts" class="nav-btn">טיוטות</button>
+        </div>
+      </div>
+
+      <div id="emails-area">
+        
+      </div>
+    </div>
+    <button id="add-email">+</button> 
+    <div id="new-email-form">
+        <input type="text" id="email-recipient" class="email-input" placeholder="Recipient">
+        <input type="text" id="email-body" class="email-input" placeholder="Email Body">  
+        <button class="email-input" id="send">שלח</button>
+    </div>
 </body>
+<script src="script.js"></script>
 </html>
